@@ -3,31 +3,73 @@
 	<title>ePick - Item Pick</title>
 	<meta name="viewport" content="width=device-width">
 	<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/css/style.css" rel="stylesheet">
 	<script src="/static/js/jquery.min.js"></script>
 	<script src="/static/js/bootstrap.min.js"></script>
+	
+	<script>
+		function makeRequest(callback) {
+			setTimeout(callback, 500);
+		}
+		$(document).ready(function () {
+			$('.vote').click(function (e) {
+				e.preventDefault();
+				var link = e.target.parentNode;
+				var productId = $(link).attr('product');
+				var pollId = $(link).attr('poll');
+				makeRequest(function () {
+					$('#successModal').modal('toggle')	
+				})
+			});
+		});
+	</script>
+	<style>
+		.loader {
+			width: 40px;
+		}
+	</style>
 </head>
 <body>
+	<div id="successModal" class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Your vote is sent!</h4>
+	      </div>
+	      <div class="modal-body">
+	        
+	        <p><img width="60" src="/static/img/success.png" /> Thanks for vomiting :)</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
 	<div class="row text-center">
   		<img width="200" src="/static/img/logo.jpg">
 	</div>
 	<div class="row text-center">
-  		<h1>@model.question</h1>
+  		<h1>@model.poll.question</h1>
 	</div>
 	<div class="row">
-		@model.products.forEach(function (product) {
-		<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
-			<div class="row">
-				<div class="text-center">
-					<a href="/Poll/@model.id/Vote/@product.id/">
-						<img class="img-responsive" src="@product.picture"/>
+		@model.poll.Products.forEach(function (product) {
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<div class="product-container">
+				<div class="row">
+					<a href="#" product="@product.id" poll="@model.poll.id" class="vote">
+
+						<div style="background-image: url('@product.picture');" class="square">
+						</div>
 					</a>
 				</div>
+				
+				<div class="row">
+					<a href="@product.url"><p class="text-center">@product.title</p></a>
+				</div>
 			</div>
-			<div class="row">
-				<a href="@product.url"><p class="text-center">@product.title</p></a>
-			</div>
-
-
 		</div>
 		})
 	</div>
