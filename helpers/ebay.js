@@ -11,6 +11,7 @@ module.exports = {
 		 		var item = result.GetSingleItemResponse.Item[0];
 		 		productInfo = {};
 		 		productInfo.picture = item.PictureURL[0];
+		 		productInfo.price = item.ConvertedCurrentPrice[0]['_'];
 		 		productInfo.title = item.Title[0]; 
 		 		productInfo.url = item.ViewItemURLForNaturalSearch[0];
 
