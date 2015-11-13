@@ -4,5 +4,14 @@ module.exports = {
 			res.json('pick', poll);	
 		});
 		
+	},
+
+	vote: function (req, res){
+		app.models.Vote.create({
+			PollId: req.params.pickId,
+			ProductId: req.params.productId
+		});
+
+		res.json(true);	
 	}
 };
