@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 app.server = require('http').Server(app);
 global.app = app;
-
+app.set('root', path.resolve(__dirname));
 app.config = require('./config')();
 app.helpers = require('./helpers');
 app.models = require('./models');
