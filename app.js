@@ -1,16 +1,19 @@
-var http = require('http');
+var path = require('path');
 var express = require('express');
 var app = express();
+app.server = require('http').Server(app);
+global.app = app;
 
-app.set('view engine', 'vash');
-app.use(express.static(__dirname + '/static'));
+app.config = require('./config')();
+app.helpers = require('./helpers');
+app.models = require('./models');
+app.use(require('./middlewares'));
+app.controllers = require('./controllers');
+require('./routes');
 
-app.get('/', function (req, res) {
-	console.log('HTTP');
-	res.send('Hello World');
+
+app.server.listen(8000, function () {
+	console.log('Service is now ready');
 });
 
-var server = http.createServer(app);
-server.listen(3000, function () {
-	console.log('Server started');
-});
+//require('./errorHandler');

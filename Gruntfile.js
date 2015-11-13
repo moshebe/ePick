@@ -3,7 +3,7 @@ module.exports = function (grunt) {
 	grunt.initConfig({
 		nodemon: {
 			all: {
-				script: 'index.js',
+				script: 'app.js',
 				options: {
 					watchedExtensions: ['js']
 				}

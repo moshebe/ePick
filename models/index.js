@@ -44,7 +44,7 @@ Object.keys(db).forEach(function(modelName) {
 
 require('./Relations.spec')(conn.models);
 conn.sync({logging: false}).then(function () {
-  app.log('Database Ready', app.logger.INFO);
+  console.log('Database Ready');
 });
 
 db.sequelize = conn;
