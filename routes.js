@@ -1,0 +1,1 @@
+app.get('/Pick/:pickItem?', app.controllers.pick.generatePick);
