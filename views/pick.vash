@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>ePick - Item Pick</title>
+	<meta name="viewport" content="width=device-width">
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="row text-center">
+  		<img width="200" src="/static/img/logo.jpg">
+	</div>
+	<div class="row text-center">
+  		<h1>@model.question</h1>
+	</div>
+	<div class="row">
+		@model.products.forEach(function (product) {
+		<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+			<div class="row">
+				<div class="text-center">
+					<a href="/Poll/@model.id/Vote/@product.id/">
+						<img class="img-responsive" src="@product.picture"/>
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				<a href="@product.url"><p class="text-center">@product.title</p></a>
+			</div>
+
+
+		</div>
+		})
+	</div>
+</body>
+
+</html>
