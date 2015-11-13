@@ -25,24 +25,36 @@ module.exports = {
 		var obj = {};
 
 		app.models.Vote.count({where: {PollId: req.params.pickId}}).then(function (count){
-			obj.count = count;
+			obj.count = count == 0 ? 1 : count;
 
 			return app.models.Vote.findAll({
 				attributes: ['Vote.ProductId', [app.models.sequelize.fn('count', app.models.sequelize.col('Vote.id')), 'votes']],
 				where: {PollId: req.params.pickId},
 				include: [{model: app.models.Product}],
 				group: ['Vote.ProductId'],
+				raw: true
 			});
 
 		}).then(function (results){
-			
+			obj.votesInfo = {};
+			results.forEach(function (res) {
+				obj.votesInfo[res['Product.id']] = res.votes;
+			});
+			return app.models.Product.findAll({where: {PollId: req.params.pickId}});
+		}).then(function (results){
+
 			for (var key in results){
+
 				results[key] = results[key].get({plain: true});
-	
-				results[key]['percents'] = (results[key].votes / obj.count) * 100;		
+				results[key].votes = obj.votesInfo[results[key].id] ? obj.votesInfo[results[key].id] : 0;
+				results[key].percents = (results[key].votes / obj.count) * 100;
+
 			}
 
-			res.json(results);
+			res.json(results);	
+			
+
+
 		});
 
 
