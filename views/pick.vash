@@ -10,7 +10,7 @@
 	<script>
 		function makeRequest(pollId, productId, callback) {
 			var url = "/Pick/" + pollId + "/Vote/" + productId + "/";
-			$.get(url, function(data, status){
+			$.post(url, function(data, status){
         		callback();
     		});
 		}
