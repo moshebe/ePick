@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="text-center">
 					<a href="/Pick/@model.poll.id/Vote/@product.id/">
-						<img class="img-product img-responsive" src="@product.picture"/>
+						<img class="img-produc t img-responsive" src="@product.picture"/>
 					</a>
 				</div>
 			</div>
