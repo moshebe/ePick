@@ -16,9 +16,13 @@ module.exports = {
 	},
 
 	statistics: function(req, res){
-
-		app.models.Vote.count({}).then(function (count){
-			res.json({'votes': count});
+		app.models.Vote.findAll({
+			attributes: ['Vote.ProductId', [app.models.sequelize.fn('count', app.models.sequelize.col('Vote.id')), 'votes']],
+			where: {PollId: req.params.pickId},
+			include: [{model: app.models.Product}],
+			group: ['Vote.ProductId']
+		}).then(function (results){
+			res.json(results);
 		});
 	}
 };
