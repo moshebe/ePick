@@ -21,7 +21,7 @@ module.exports =  {
             return poll;
           })
           .then(function (poll){
-            // poll.addProducts(productsInfo);
+            poll.addProducts(productsInfo);
           });
 
 

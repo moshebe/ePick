@@ -17,7 +17,6 @@ require('./routes');
 
 
 
-
 app.server.listen(8000, function () {
 	console.log('Service is now ready');
 });
