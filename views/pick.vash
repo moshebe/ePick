@@ -8,8 +8,11 @@
 	<script src="/static/js/bootstrap.min.js"></script>
 	
 	<script>
-		function makeRequest(callback) {
-			setTimeout(callback, 500);
+		function makeRequest(pollId, productId, callback) {
+			var url = "/Pick/" + pollId + "/Vote/" + productId + "/";
+			$.get(url, function(data, status){
+        		callback();
+    		});
 		}
 		$(document).ready(function () {
 			$('.vote').click(function (e) {
@@ -17,7 +20,7 @@
 				var link = e.target.parentNode;
 				var productId = $(link).attr('product');
 				var pollId = $(link).attr('poll');
-				makeRequest(function () {
+				makeRequest(pollId, productId, function () {
 					$('#successModal').modal('toggle')	
 				})
 			});
