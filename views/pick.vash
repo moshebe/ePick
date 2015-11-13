@@ -26,11 +26,6 @@
 			});
 		});
 	</script>
-	<style>
-		.loader {
-			width: 40px;
-		}
-	</style>
 </head>
 <body>
 	<div id="successModal" class="modal fade">
@@ -63,9 +58,12 @@
 			<div class="product-container">
 				<div class="row">
 					<a href="#" product="@product.id" poll="@model.poll.id" class="vote">
-
 						<div style="background-image: url('@product.picture');" class="square">
+							<div class="price">
+								<p class="price-text" style="opacity: 1;">Price: @product.price $</p>
+							</div>
 						</div>
+		
 					</a>
 				</div>
 				
