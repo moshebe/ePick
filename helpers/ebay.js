@@ -10,7 +10,7 @@ module.exports = {
 		 	return xml2js.parseStringAsync(response).then(function (result) {
 		 		var item = result.GetSingleItemResponse.Item[0];
 		 		productInfo = {};
-		 		productInfo.picture = item.GalleryURL[0];
+		 		productInfo.picture = item.PictureURL[0];
 		 		productInfo.title = item.Title[0]; 
 		 		productInfo.url = item.ViewItemURLForNaturalSearch[0];
 
