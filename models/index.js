@@ -8,7 +8,7 @@ var conf = app.config.db;
 var conn = new Sequelize(conf.database, conf.user, conf.pass, {
   host: conf.host,
   dialect: conf.driver,
-  logging: function (msg) { app.log(msg, 'SQL'); },
+  logging: function (msg) {  },
   pool: {
     max: 5,
     min: 0,
