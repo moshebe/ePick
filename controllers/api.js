@@ -32,13 +32,13 @@ module.exports =  {
  
     getProductInfo: function (req, res) {
         // if(!req.require(['productIds'])) return;
-          
+
         ebay.getProductInfo('371320064687').then(function (productInfo) {
         	// TODO: add to DB
 
         	res.json(productInfo);
         });
-       
-    }
 
-};
+      }
+
+    };
