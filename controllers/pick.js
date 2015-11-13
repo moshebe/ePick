@@ -13,5 +13,12 @@ module.exports = {
 		});
 
 		res.json(true);	
+	},
+
+	statistics: function(req, res){
+
+		app.models.Vote.count({}).then(function (count){
+			res.json({'votes': count});
+		});
 	}
 };

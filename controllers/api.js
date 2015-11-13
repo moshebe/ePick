@@ -30,11 +30,9 @@ module.exports =  {
   },
 
   getProductInfo: function (req, res) {
-        // if(!req.require(['productIds'])) return;
+        // if(!req.require(['productId'])) return;
 
-        ebay.getProductInfo('371320064687').then(function (productInfo) {
-        	// TODO: add to DB
-
+        ebay.getProductInfo(req.params.productId).then(function (productInfo) {
         	res.json(productInfo);
         });
 
